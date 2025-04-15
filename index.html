@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiaobei Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<header>
+  <nav class="main__nav-bar">
+    <ul class="main__nav-title">
+      <li><a href="https://magicinthemachine-cpj.netlify.app/">Magic in the Machine</a></li>
+      <li><a href="/">Experiments Microsite</a></li>
+    </ul>
+  </nav>
+</header>
+
+<body>
+  <section class="row width__l margin__auto padding__top-l">
+    <div style="border:0;" class="column margin__m">
+      <div class="row">
+        <h1>Experiment 1:<br>
+          Digital Simulation of the Jiaobei</h1>
+      </div>
+      <div style="border:0; max-width:300px;" class="column">
+        <div class="row">
+          <p>Think of a question and click on the right to find your answer. OR play God by adjusting the parameters
+            below.</p>
+        </div>
+        <div class="control-box padding__top-l">
+          <div class="label" id="probLabel"
+            data-tooltip="If algorithms are inherently deterministic, can randomness truly be digitally simulated? You decide.">
+            1. Probability(r) Threshold: 50%</div>
+          <input type="range" id="probSlider" min="0" max="1" step="0.01" value="0.5" />
+        </div>
+        <div class="control-box">
+          <div class="label" id="imageLabel"
+            data-tooltip="Does abstraction of the image from the original object (the jiaobei) reduce its authority? We might sense a shift from divine authority to computational authority. The mechanics of decision-making remain the same, but how do these images evoke trust differently?">
+            2. Image Abstraction: Jiaobei</div>
+          <div class="img-options img__bw" id="imageOptions"></div>
+        </div>
+        <div class="control-box">
+          <div class="label" id="textLabel"
+            data-tooltip="What does the divinatory text tell you? You might notice the abstraction of language also reduces the chance for interpretation. “The gods are displeased” involves interpreting the emotions of the divine, while “no” simply commands.">
+            3. Text Abstraction: Divine</div>
+          <div class="img-options img__bw" id="textOptions"></div>
+        </div>
+      </div>
+    </div>
+    <div class="column margin__m">
+      <div class="row type__content">
+        <canvas id="canvas" width="500" height="500"></canvas>
+      </div>
+    </div>
+
+  </section>
+  <script src="script.js">
+  </script>
+</body>
+
+</html>

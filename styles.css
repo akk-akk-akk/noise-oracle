@@ -1,0 +1,240 @@
+/* **********************************************************
+ * add custom styles after imports below
+ * ********************************************************** */
+
+ @import "default.css";
+ @import "layout.css";
+ @import "menu.css";
+ @import "queries.css";
+
+ /* **********************************************************
+ * to import a font, use the @import option, you can find
+ * lots of font options at fonts.google.com for example.
+ * ********************************************************** */
+
+ @import url(https://db.onlinewebfonts.com/c/4c4a87973ef80fc72049e01b9085fadc?family=ABC+Diatype);
+
+ @import url(https://db.onlinewebfonts.com/c/fbee28f49e99c472f1f569c6ddc24ebe?family=ABC+Diatype+Mono);
+
+ /* @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sawarabi+Gothic&family=Syne+Tactile&family=Syne:wght@400..800&display=swap'); */
+
+ @font-face {
+   font-family: "myfont";
+   src: url("../wkgothic_abc-webfont.woff") format('woff');
+   /* font-weight: bold; */
+ }
+
+
+
+
+
+ * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+ }
+
+ html,
+ body {
+   height: 100vh;
+   font-family: "myfont", sans-serif;
+   background-color: white;
+ }
+
+ .label {
+  font-family: 'Roboto Mono', monospace; /* Use monospaced font */
+  font-weight: 400;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  position: relative; /* Position relative for the tooltip */
+  cursor: pointer; /* Pointer cursor on hover */
+
+ }
+
+ /* Tooltip text */
+.label::after {
+  text-transform: none;
+  content: attr(data-tooltip); /* Use the data-tooltip attribute for the text */
+  position: absolute;
+  bottom: 100%; /* Position above the label */
+  left: 50%;
+  /* transform: translateX(-50%); */
+  background-color: white; /* White background */
+  color: black; /* Black text */
+  border: 2px solid black; /* Black border */
+  padding: 5px 10px; /* Padding inside the tooltip */
+  line-height: 1.5; /* Improve readability with line spacing */
+  word-wrap: break-word; /* Ensure long words wrap properly */
+  white-space: normal; /* Allow text wrapping */
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Prevent interaction when hidden */
+  transition: opacity 0.2s ease, visibility 0.2s ease; /* Smooth transition */
+  z-index: 10; /* Ensure it appears above other elements */
+  max-width: 500px; 
+  min-width: 300px;
+  text-align: left; /* Center-align the tooltip text */
+}
+
+/* Show the tooltip on hover */
+.label:hover::after {
+  opacity: 1; /* Make it visible */
+  visibility: visible; /* Allow interaction */
+}
+
+ .img-options {
+   display: flex;
+   flex-wrap: wrap; /* Allow wrapping */
+   gap: var(--spacing-xs); /* Add spacing between buttons */
+  
+ }
+
+ .img-options div {
+   flex: 1 1 calc(25% - var(--spacing-xs)); /* Dynamically calculate width */
+   max-width: calc(25% - var(--spacing-xs)); /* Prevent exceeding one-fourth */
+   aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+
+   
+ }
+
+ .img-options img {
+  padding: 10px;
+   width: 250px; /* Make the image fill the container */
+   height: auto; /* Maintain aspect ratio */
+   border: 2px solid black; /* Optional: Add a border */
+   cursor: pointer; /* Poin
+   ter cursor on hover */
+   transition: transform 0.2s ease; /* Add a smooth scaling effect */
+   object-fit: cover;
+ }
+
+ .img-options img:hover {
+  box-shadow: 0 0 10px var(--color-4); /* Add a shadow on hover */
+ }
+
+ .img-options span {
+   display: block;
+   font-family: 'Roboto Mono', monospace; /* Use monospaced font */
+   font-size: var(--font-size-xs); /* Adjust font size */
+   margin-top: 5px;
+ }
+
+ /* Common button styling */
+.option-button {
+  padding: 10px;
+  width: 100%; /* Make the image fill the container */
+  height: auto; /* Maintain aspect ratio */
+  border: 2px solid black; /* Default border */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: box-shadow 0.2s ease; /* Smooth transition for the glow */
+}
+
+/* Red glow for the selected button */
+.option-button.selected {
+  box-shadow: 0 0 10px red; /* Red glow effect */
+}
+
+
+ canvas {
+   background-color: white;
+   width: auto;
+   max-height: 80vh;
+   display: block;
+   margin: 0 auto; /* Center the canvas */
+ }
+
+ /* Mobile-specific styles */
+ @media (width: 768px) {
+   canvas {
+     width: 100%; /* Scale canvas to fit the screen width */
+     height: auto; /* Maintain aspect ratio */
+     max-width: 90%; /* Ensure it doesn't exceed the screen width */
+   }
+ }
+
+ #probSlider {
+   width: 250px;
+   /* Adjust the width as needed */
+ }
+
+ .control-box {
+   width: 100%;
+   /* Set a consistent width */
+   /* border: 1px solid black; */
+   /* Optional: Add a border for clarity */
+   /* padding: var(--spacing-s); */
+   /* Add padding for spacing */
+   /* margin-bottom: var(--spacing-m); */
+   /* Add spacing between boxes */
+ }
+
+/* Style the slider container */
+#probSlider {
+  -webkit-appearance: none; /* Remove default styling */
+  appearance: none;
+  width: 100%; /* Adjust width as needed */
+  height: 20px; /* Height of the slider track */
+  background: grey; /* White background */
+  border: 2px solid black; /* Black border */
+  border-radius: 20px; /* Rounded corners */
+  outline: none; /* Remove focus outline */
+  overflow: hidden; /* Ensure the fill stays within bounds */
+  position: relative;
+}
+
+/* Style the slider's fill (progress) */
+#probSlider::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgb(246, 246, 246); /* Black fill */
+  height: 100%; /* Full height of the track */
+  position: relative;
+}
+
+#probSlider::-moz-range-track {
+  background: black; /* Black fill for Firefox */
+  height: 100%;
+}
+
+#probSlider::-ms-track {
+  background: transparent; /* Transparent for IE/Edge */
+  border-color: transparent;
+  color: transparent;
+  height: 100%;
+}
+
+/* Style the slider thumb (indicator) */
+#probSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px; /* Width of the thumb */
+  height: 15px; /* Height of the thumb */
+  background: var(--color-4);
+  box-shadow: 0 0 10px var(--color-4); /* Add a shadow on hover */
+  /* border: 2px solid black; Black border */
+  border-radius: 50%; /* Rounded thumb */
+  cursor: pointer; /* Pointer cursor on hover */
+  /* position: relative; */
+  z-index: 2; /* Ensure it appears above the track */
+}
+
+#probSlider::-moz-range-thumb {
+  width: 10px;
+  height: 20px;
+  background: green;
+  border: 2px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#probSlider::-ms-thumb {
+  width: 10px;
+  height: 20px;
+  background: green;
+  border: 2px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+

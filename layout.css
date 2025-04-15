@@ -1,0 +1,676 @@
+/* **********************************************************
+ * default style that take care of the default layout 
+ * and typography.
+ * ********************************************************** */
+
+/* **********************************************************
+ * let's get started and do a default reset
+ * ********************************************************** */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark light;
+  scroll-behavior: smooth;}
+
+body {
+
+  -webkit-font-smoothing: antialiased;
+  color:black;
+
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+
+
+/* **********************************************************
+ * now let's take care of our main layout and content
+ *
+ * 1. header and main-navigation
+ * 2.1 weekly
+ * 2.2 repository
+ * 2.3 misc
+ * 3. footer
+ * 4. main layout
+ * 
+ * ********************************************************** */
+
+/* 1. header and main-navigation menu */
+
+header {
+  top: 0;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+main {
+  margin-top: var(--header__height);
+}
+
+
+/* 2.1 weekly */
+
+.weekly ul {
+  margin-bottom: var(--spacing-l);
+}
+
+.weekly h2 {
+  font-weight: 600;
+  text-decoration: none;
+} 
+
+.weekly ul li {
+  border-bottom: 2px solid var(--color-0);
+}
+
+.weekly ul li:first-child {
+  border-top: 2px solid var(--color-0);
+}
+
+.weekly ul li a {
+  padding: var(--spacing-xs);
+  transition: padding-left 0.5s;
+  display: block;
+  color: var(--color-0);
+  transition: 0.2s;
+}
+
+.weekly ul li a:hover {
+  padding-left: var(--spacing-s);
+  color: var(--color-4);
+  /* box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7);   */
+}
+
+
+/* 2.2 repository */
+
+.repo {
+  margin-bottom:var(--spacing-l);
+}
+
+.repo h2 {
+  margin-bottom: var(--spacing-s);
+}
+
+.repo__list ul {
+  border-top: solid var(--color-2) 2px;
+  padding-top: var(--spacing-s);
+  padding-bottom: var(--spacing-m);
+}
+
+.repo__item ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.repo__item ul li img {
+  max-height: 12rem;
+  width: auto;
+}
+
+.repo__item ul li p {
+  font-size: var(--font-size-s);
+}
+
+.repo__item ul li:nth-child(1) {
+  padding-right: var(--spacing-s);
+  width: 25%;
+}
+
+.repo__item ul li:nth-child(2) {
+  padding-right: var(--spacing-s);
+  font-style: italic;
+  width: 30%;
+}
+
+.repo__item ul li:nth-child(3) {
+  width: 45%;
+}
+
+@media (orientation: portrait) {
+  .repo__item ul {
+    display: block;
+  }
+
+  .repo__item ul li:nth-child(n) {
+    margin-top: var(--spacing-m);
+    width: 90%;
+  }
+}
+
+/* 2.3 image with caption */
+
+figcaption p {
+  font-family: 'ABC Diatype Mono', monospace;
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  font-weight: bold;
+  /* font-style: italic; */
+  /* -webkit-text-stroke-width: 0.75px; */
+  width:80%;
+}
+figcaption p b {
+  font-weight: 700;
+  font-size: inherit;
+}
+
+
+/* 2.4 misc */
+
+.fixed {
+  position: fixed;
+}
+
+.sticky {
+  position: sticky;
+  top: var(--spacing-l);
+}
+
+.scroll__top {
+  margin: var(--spacing-s) auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 2rem;
+}
+
+.scroll__top a {
+  font-size: 1.25rem;
+  padding: 1rem;
+  transition: color 0.3s;
+  color:var(--color-nav-link);
+}
+
+.embed__video-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 56.25%;
+}
+
+.embed__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/*
+ * image filters
+ * https://www.w3schools.com/cssref/css3_pr_filter.php
+ */
+ .img__bw {
+  filter: grayscale(100%);
+}
+
+.img__stroke {
+  border: 1px solid var(--color-2);
+}
+
+.img__stroke2 {
+  border-top: 1px solid var(--color-2);
+  border-bottom: 1px solid var(--color-2);
+}
+
+.img__circle {
+  border-radius: 50%;
+}
+
+.img__circle2 {
+  border-radius: 50%;
+  border: 1px solid var(--color-2);
+}
+
+/* 3. footer */
+
+footer {
+  min-height: 12rem;
+  text-align: center;
+}
+
+/* 4. main layout */
+
+.row {
+  align-items: start;
+  width:100%;
+}
+
+.row,
+.row > ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: auto;
+  gap: var(--spacing-xs);
+}
+
+.row img {
+  width: 100%;
+  height: 100%;
+}
+
+.row__no-gap {
+  gap: 0;
+}
+
+.row__video {
+  gap: 1%;
+}
+
+
+.column,
+.row > ul > li {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 2px solid var(--color-0);
+}
+
+
+.column h1 {
+  gap: var(--spacing-m); /* Add this if you want to control the gap size in column layouts */
+}
+
+.column__half {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 50%;
+}
+
+.column__double {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 2;
+}
+
+.type__content {
+  margin-left: var(--spacing-l);
+  margin-right: var(--spacing-l);
+  margin-bottom: var(--spacing-l);
+}
+
+.center__type {
+  display: block;
+  text-align: center;
+}
+
+/* **********************************************************
+ * Main typography
+ * ********************************************************** */
+
+h1 {
+  /* font-family: 'Courier Prime', monospace; */
+  font-size: var(--font-size-l); 
+  font-weight: 500;
+  margin-bottom: var(--spacing-m);
+  -webkit-text-stroke-width: 0.5px;
+  color: var(--color-11);
+
+  line-height: 1.3;
+
+  /* letter-spacing: -2px;
+  /* text-transform: uppercase; */
+}
+
+
+h2 {
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  margin-bottom: var(--spacing-s);
+  text-decoration: underline 2px;
+  -webkit-text-stroke-width: 0.3px;
+  text-transform: uppercase;
+}
+
+
+h3 {
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  margin-bottom: var(--spacing-l);
+  /* text-decoration: underline; */
+  /* color: var(--color-10) */
+}
+
+
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-m);
+  font-weight: 600;
+  margin-bottom: var(--spacing-l);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type:none;
+  -webkit-text-stroke-width: 0.25px;
+}
+
+hr {
+  height: 2px;
+  border: none;
+  background-color: var(--color-11);
+}
+
+
+/* **********************************************************
+ * Paragraph styling
+ * ********************************************************** */
+
+
+p {
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  line-height: 1.5;
+  /* -webkit-text-stroke-width: 0.25px; */
+  
+  /* letter-spacing: -0.5px; */
+}
+
+p i {
+  color: var(--color-3);
+}
+
+p b {
+  -webkit-text-stroke-width: 0.75px;
+}
+
+/* p a {
+  text-decoration:underline;
+  text-underline-offset: 3px;
+} */
+
+a {
+  color: var(--color-link);
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration-color: transparent;
+}
+
+p:not(:last-child) {
+  margin-bottom: var(--spacing-m);
+}
+
+.p__size-l {
+  font-size: var(--font-size-l);
+}
+
+.p__size-m {
+  font-size: var(--font-size-m);
+}
+
+.p__size-s {
+  font-size: var(--font-size-s);
+}
+
+.p__size-xs {
+  font-size: var(--font-size-xs);
+}
+
+.p__width-l {
+  width: 100%;
+}
+
+.p__width-m {
+  width: 60%;
+  min-width: 20rem;
+}
+
+.p__width-s {
+  width: 40%;
+  min-width: 15rem;
+}
+
+.p__width-xs {
+  width: 20%;
+  min-width: 10rem;
+}
+
+
+
+@media (orientation: portrait) {
+
+
+  .p__size-xl {
+    font-size: var(--font-size-l);
+  }
+
+  .p__size-l {
+    font-size: var(--font-size-m);
+  }
+  
+  .p__size-m {
+    font-size: var(--font-size-s);
+  }
+
+
+  h2 {
+    text-decoration: underline;
+  }
+}
+
+
+
+/* **********************************************************
+ * special features           
+ * 1. lightbox
+ * ********************************************************** */
+
+
+/* 1. lightbox
+ * click on an image (must implement class="zoom") to go full size 
+ * from: https://code-boxx.com/image-zoom-css-javascript
+ */
+
+#lightbox {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  align-items: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: opacity ease 0.3s;
+}
+
+#lightbox.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#lightbox img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.zoom {
+  cursor: pointer;
+}
+
+/* ********************************************************** */
+/* debug, when enabled, useful to see the layout-boxes for    */
+/* sections and divs.                                         */
+/* set border to 1px below
+/* ********************************************************** */
+
+section,
+div,
+ul,
+li {
+  border: 0px solid;
+}
+
+.outline {
+  border: 1px dotted black;
+}
+
+
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* **********************************************************
+ * Gradient Scroll Bar
+ * ********************************************************** */
+
+
+/* width */
+::-webkit-scrollbar {
+  /* width: 10px; */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* border: 1px solid var(--color-2); */
+  /* border-radius: 100vh; */
+  /* background: #ffffff; */
+  /* background: var(--color-11) */
+  
+  /* background: linear-gradient(rgb(255, 0, 0, 0.5), rgb(255, 255, 255,0),rgb(255, 0, 0, 0.5)); */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* background: linear-gradient(rgb(255, 255, 255,0), var(--color-4), rgb(255, 255, 255,0)); */
+  /* background: linear-gradient(rgb(255, 0, 0), rgb(255, 255, 255,0),rgb(255, 0, 0)); */
+  /* border-radius: 100vh; */
+}
+
+/* **********************************************************
+ * PDF Viewer
+ * ********************************************************** */
+
+
+.pdf-viewer {
+  width: 100%;
+  border: 1px solid #ccc; /* Optional: Add a border */
+  margin: 1rem 0; /* Optional: Add spacing */
+}
+
+
+/* **********************************************************
+ * Grid Containers
+ * ********************************************************** */
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+  /* gap: 20px; Spacing between grid items */
+  width: 100%;
+  /* max-width: 1200px; Optional: Limit the width of the grid */
+  margin: 0 auto; /* Center the grid */
+  /* padding: 20px; Optional: Add padding around the grid */
+}
+
+/* Grid items */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  /* border-radius: 10px; Optional: Add rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container */
+  transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+  /* transform: scale(1.05); Slightly enlarge the container */
+  /* box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); Red glow effect */
+}
+
+.grid-item:hover img {
+  transform: scale(1.1);
+}
+
+
+/* **********************************************************
+ * Wizard Gif (Corner)
+ * ********************************************************** */
+
+.fixed-gif {
+  position: fixed; /* Keeps the GIF in the same position regardless of scrolling */
+  bottom: 20px; /* Distance from the bottom of the viewport */
+  left: 5px; /* Distance from the left of the viewport */
+  z-index: 1000; /* Ensures it appears above other elements */
+  scale: 200%;
+}
+
+.fixed-gif img {
+  width: 40px; /* Adjust the size of the GIF */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); Optional: Add a shadow for better visibility */
+}
+
+
+/* **********************************************************
+ * Hover Image
+ * ********************************************************** */
+
+.hover-image {
+  position: absolute;
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  display: none; /* Hidden by default */
+  pointer-events: none; /* Prevent the image from interfering with mouse events */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+
