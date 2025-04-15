@@ -18,7 +18,20 @@
 </header>
 
 <body>
-  <section class="row width__l margin__auto padding__top-l">
+
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close" id="popupClose">&times;</span>
+      <h1>
+        Experiment 1: Digital Simulation of the Jiaobei<br><br>
+        Through the digital recreation of the traditional Chinese divinatory technique, this first experiment thus asks
+        “What does it take to truly simulate the process of meaning-making through chance?” Taking a leaf from
+        divinatory studies, explore the materiality of belief – medium (code), image, and text – in a digital setting.
+      </h1>
+    </div>
+  </div>
+
+  <section style="gap: var(--spacing-xl)" class="row width__l margin__auto padding__top-l">
     <div style="border:0;" class="column margin__m">
       <div class="row">
         <h1>Experiment 1:<br>
@@ -26,16 +39,15 @@
       </div>
       <div style="border:0; max-width:300px;" class="column">
         <div class="row">
-          <p>Think of a question and click on the right to find your answer. OR play God by adjusting the parameters
-            below.</p>
+          <p>Think of a question and click on the right to find your answer. OR play God and choose how you would like to receive your information.</p>
         </div>
-        <div class="control-box padding__top-l">
+        <div class="row padding__top-l">
           <div class="label" id="probLabel"
             data-tooltip="If algorithms are inherently deterministic, can randomness truly be digitally simulated? You decide.">
             1. Probability(r) Threshold: 50%</div>
           <input type="range" id="probSlider" min="0" max="1" step="0.01" value="0.5" />
         </div>
-        <div class="control-box">
+        <div class="row">
           <div class="label" id="imageLabel"
             data-tooltip="Does abstraction of the image from the original object (the jiaobei) reduce its authority? We might sense a shift from divine authority to computational authority. The mechanics of decision-making remain the same, but how do these images evoke trust differently?">
             2. Image Abstraction: Jiaobei</div>
@@ -49,15 +61,13 @@
         </div>
       </div>
     </div>
-    <div class="column margin__m">
+    <div class="column margin__y-m">
       <div class="row type__content">
         <canvas id="canvas" width="500" height="500"></canvas>
       </div>
     </div>
-
   </section>
-  <script src="script.js">
-  </script>
-</body>
 
-</html>
+  <script src="script.js"></script>
+
+</body>

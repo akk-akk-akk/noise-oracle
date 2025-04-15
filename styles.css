@@ -29,14 +29,12 @@
 
 
  * {
-   box-sizing: border-box;
    margin: 0;
    padding: 0;
  }
 
  html,
  body {
-   height: 100vh;
    font-family: "myfont", sans-serif;
    background-color: white;
  }
@@ -47,7 +45,7 @@
   font-size: 0.8em;
   text-transform: uppercase;
   margin-bottom: 10px;
-  margin-top: 30px;
+  margin-top: 50px;
   position: relative; /* Position relative for the tooltip */
   cursor: pointer; /* Pointer cursor on hover */
 
@@ -91,8 +89,7 @@
  }
 
  .img-options div {
-   flex: 1 1 calc(25% - var(--spacing-xs)); /* Dynamically calculate width */
-   max-width: calc(25% - var(--spacing-xs)); /* Prevent exceeding one-fourth */
+   width: calc(25% - var(--spacing-xs)); /* Prevent exceeding one-fourth */
    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
 
    
@@ -100,11 +97,10 @@
 
  .img-options img {
   padding: 10px;
-   width: 250px; /* Make the image fill the container */
+   max-width: 100%; /* Changed from fixed 250px to max-width 100% for responsiveness */
    height: auto; /* Maintain aspect ratio */
    border: 2px solid black; /* Optional: Add a border */
-   cursor: pointer; /* Poin
-   ter cursor on hover */
+   cursor: pointer; /* Pointer cursor on hover */
    transition: transform 0.2s ease; /* Add a smooth scaling effect */
    object-fit: cover;
  }
@@ -119,6 +115,7 @@
    font-size: var(--font-size-xs); /* Adjust font size */
    margin-top: 5px;
  }
+
 
  /* Common button styling */
 .option-button {
@@ -138,19 +135,35 @@
 
  canvas {
    background-color: white;
-   width: auto;
+   width: auto 0;
+   max-width: 100%;
+   height: auto;
    max-height: 80vh;
    display: block;
    margin: 0 auto; /* Center the canvas */
  }
 
  /* Mobile-specific styles */
- @media (width: 768px) {
+ @media (max-width: 768px) {
+   section.row {
+     flex-direction: column;
+     margin-left: var(--spacing-m);
+     margin-right: var(--spacing-m);
+   }
    canvas {
      width: 100%; /* Scale canvas to fit the screen width */
      height: auto; /* Maintain aspect ratio */
      max-width: 90%; /* Ensure it doesn't exceed the screen width */
    }
+ }
+ 
+ /* Adjust column width ratio */
+ section.row > div.column:first-child {
+   flex: 1; /* Left column takes 1 part */
+ }
+ 
+ section.row > div.column:last-child {
+   flex: 3; /* Right column takes 3 parts */
  }
 
  #probSlider {
@@ -158,16 +171,7 @@
    /* Adjust the width as needed */
  }
 
- .control-box {
-   width: 100%;
-   /* Set a consistent width */
-   /* border: 1px solid black; */
-   /* Optional: Add a border for clarity */
-   /* padding: var(--spacing-s); */
-   /* Add padding for spacing */
-   /* margin-bottom: var(--spacing-m); */
-   /* Add spacing between boxes */
- }
+
 
 /* Style the slider container */
 #probSlider {
@@ -238,3 +242,49 @@
 }
 
 
+/* Pop-up box styling */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above all other elements */
+  visibility: hidden; /* Initially hidden */
+  opacity: 0; /* Initially transparent */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow for better visibility */
+}
+
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.popup-close:hover {
+  color: red;
+}
+
+/* Show the pop-up */
+.popup.show {
+  visibility: visible;
+  opacity: 1;
+}

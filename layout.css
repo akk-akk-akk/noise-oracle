@@ -145,7 +145,7 @@ main {
   width: 45%;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 768px) {
   .repo__item ul {
     display: block;
   }
@@ -253,15 +253,14 @@ footer {
 
 .row {
   align-items: start;
-  width:100%;
-}
-
-.row,
-.row > ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: auto;
+}
+
+.row,
+.row > ul {
   gap: var(--spacing-xs);
 }
 
