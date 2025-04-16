@@ -56,5 +56,26 @@ async function predict() {
   document.getElementById("overlayText").innerText = highestPrediction.className;
 }
 
+// Show the popup when the page loads
+window.onload = function () {
+  const popup = document.getElementById("popup");
+  const popupClose = document.getElementById("popupClose");
+
+  // Display the popup
+  popup.style.display = "block";
+
+  // Close the popup when the close button is clicked
+  popupClose.onclick = function () {
+    popup.style.display = "none";
+  };
+
+  // Close the popup when clicking outside the popup content
+  window.onclick = function (event) {
+    if (event.target === popup) {
+      popup.style.display = "none";
+    }
+  };
+};
+
 // Start the application
 init();
