@@ -2,239 +2,68 @@
  * add custom styles after imports below
  * ********************************************************** */
 
- @import "default.css";
- @import "layout.css";
- @import "menu.css";
- @import "queries.css";
+@import "default.css";
+@import "layout.css";
+@import "menu.css";
 
- /* **********************************************************
+/* **********************************************************
  * to import a font, use the @import option, you can find
  * lots of font options at fonts.google.com for example.
  * ********************************************************** */
 
- @import url(https://db.onlinewebfonts.com/c/4c4a87973ef80fc72049e01b9085fadc?family=ABC+Diatype);
+@import url(https://db.onlinewebfonts.com/c/4c4a87973ef80fc72049e01b9085fadc?family=ABC+Diatype);
 
- @import url(https://db.onlinewebfonts.com/c/fbee28f49e99c472f1f569c6ddc24ebe?family=ABC+Diatype+Mono);
+@import url(https://db.onlinewebfonts.com/c/fbee28f49e99c472f1f569c6ddc24ebe?family=ABC+Diatype+Mono);
 
- /* @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sawarabi+Gothic&family=Syne+Tactile&family=Syne:wght@400..800&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sawarabi+Gothic&family=Syne+Tactile&family=Syne:wght@400..800&display=swap'); */
 
- @font-face {
-   font-family: "myfont";
-   src: url("../wkgothic_abc-webfont.woff") format('woff');
-   /* font-weight: bold; */
- }
-
-
+@font-face {
+  font-family: "myfont";
+  src: url("../wkgothic_abc-webfont.woff") format('woff');
+  /* font-weight: bold; */
+}
 
 
 
- * {
-   margin: 0;
-   padding: 0;
- }
 
- .label {
-  font-family: 'Roboto Mono', monospace; /* Use monospaced font */
-  font-weight: 400;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  margin-top: 50px;
-  position: relative; /* Position relative for the tooltip */
-  cursor: pointer; /* Pointer cursor on hover */
 
- }
+* {
+  margin: 0;
+  padding: 0;
+}
 
- /* Tooltip text */
-.label::after {
-  text-transform: none;
-  content: attr(data-tooltip); /* Use the data-tooltip attribute for the text */
+
+/* Style for the live camera feed */
+#webcam-container {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure the webcam canvas scales to fit its parent container */
+#webcam-container canvas {
+  width: 100%; /* Make the canvas take up 100% of the parent's width */
+  height: auto; /* Maintain the aspect ratio */
+  display: block; /* Remove any extra spacing caused by inline elements */
+}
+
+/* Style for the GIF overlay text */
+#overlayText {
+  font-family: 'Roboto Mono', monospace;
   position: absolute;
-  bottom: 100%; /* Position above the label */
-  left: 90%;
-  /* transform: translateX(-50%); */
-  background-color: white; /* White background */
-  color: black; /* Black text */
-  border: 2px solid black; /* Black border */
-  padding: 5px 10px; /* Padding inside the tooltip */
-  line-height: 1.5; /* Improve readability with line spacing */
-  word-wrap: break-word; /* Ensure long words wrap properly */
-  white-space: normal; /* Allow text wrapping */
-  opacity: 0; /* Initially hidden */
-  visibility: hidden; /* Prevent interaction when hidden */
-  transition: opacity 0.2s ease, visibility 0.2s ease; /* Smooth transition */
-  z-index: 10; /* Ensure it appears above other elements */
-  max-width: 500px; 
-  min-width: 300px;
-  text-align: left; /* Center-align the tooltip text */
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  color: white;
+  font-weight: 100;
+  text-align: center;
+  /* text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); */
 }
 
-/* Show the tooltip on hover */
-.label:hover::after {
-  opacity: 1; /* Make it visible */
-  visibility: visible; /* Allow interaction */
+#gifBackground {
+  width: 100%; 
+  height: auto;
 }
-
- .img-options {
-   display: flex;
-   flex-wrap: wrap; /* Allow wrapping */
-   gap: var(--spacing-xs); /* Add spacing between buttons */
-  
- }
-
- .img-options div {
-   width: calc(25% - var(--spacing-xs)); /* Prevent exceeding one-fourth */
-   aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
-
-   
- }
-
- .img-options img {
-  padding: 10px;
-   max-width: 100%; /* Changed from fixed 250px to max-width 100% for responsiveness */
-   height: auto; /* Maintain aspect ratio */
-   border: 2px solid black; /* Optional: Add a border */
-   cursor: pointer; /* Pointer cursor on hover */
-   transition: transform 0.2s ease; /* Add a smooth scaling effect */
-   object-fit: cover;
- }
-
- .img-options img:hover {
-  box-shadow: 0 0 10px var(--color-4); /* Add a shadow on hover */
- }
-
- .img-options span {
-   display: block;
-   font-family: 'Roboto Mono', monospace; /* Use monospaced font */
-   font-size: var(--font-size-xs); /* Adjust font size */
-   margin-top: 5px;
- }
-
-
- /* Common button styling */
-.option-button {
-  padding: 10px;
-  width: 100%; /* Make the image fill the container */
-  height: auto; /* Maintain aspect ratio */
-  border: 2px solid black; /* Default border */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: box-shadow 0.2s ease; /* Smooth transition for the glow */
-}
-
-/* Red glow for the selected button */
-.option-button.selected {
-  box-shadow: 0 0 10px red; /* Red glow effect */
-}
-
-
- canvas {
-   background-color: white;
-   width: auto 0;
-   max-width: 100%;
-   height: auto;
-   max-height: 75vh;
-   display: block;
-   margin: 0 auto; /* Center the canvas */
- }
-
- /* Mobile-specific styles */
- @media (max-width: 768px) {
-   section.row {
-     flex-direction: column;
-     margin-left: var(--spacing-m);
-     margin-right: var(--spacing-m);
-   }
-   canvas {
-     width: 100%; /* Scale canvas to fit the screen width */
-     height: auto; /* Maintain aspect ratio */
-     max-width: 90%; /* Ensure it doesn't exceed the screen width */
-   }
- }
- 
- /* Adjust column width ratio */
- section.row > div.column:first-child {
-   flex: 1; /* Left column takes 1 part */
- }
- 
- section.row > div.column:last-child {
-   flex: 3; /* Right column takes 3 parts */
- }
-
- #probSlider {
-   width: 250px;
-   /* Adjust the width as needed */
- }
-
-
-
-/* Style the slider container */
-#probSlider {
-  -webkit-appearance: none; /* Remove default styling */
-  appearance: none;
-  width: 100%; /* Adjust width as needed */
-  height: 20px; /* Height of the slider track */
-  background: grey; /* White background */
-  border: 2px solid black; /* Black border */
-  border-radius: 20px; /* Rounded corners */
-  outline: none; /* Remove focus outline */
-  overflow: hidden; /* Ensure the fill stays within bounds */
-  position: relative;
-}
-
-/* Style the slider's fill (progress) */
-#probSlider::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  appearance: none;
-  background: rgb(246, 246, 246); /* Black fill */
-  height: 100%; /* Full height of the track */
-  position: relative;
-}
-
-#probSlider::-moz-range-track {
-  background: black; /* Black fill for Firefox */
-  height: 100%;
-}
-
-#probSlider::-ms-track {
-  background: transparent; /* Transparent for IE/Edge */
-  border-color: transparent;
-  color: transparent;
-  height: 100%;
-}
-
-/* Style the slider thumb (indicator) */
-#probSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px; /* Width of the thumb */
-  height: 15px; /* Height of the thumb */
-  background: var(--color-4);
-  box-shadow: 0 0 10px var(--color-4); /* Add a shadow on hover */
-  /* border: 2px solid black; Black border */
-  border-radius: 50%; /* Rounded thumb */
-  cursor: pointer; /* Pointer cursor on hover */
-  /* position: relative; */
-  z-index: 2; /* Ensure it appears above the track */
-}
-
-#probSlider::-moz-range-thumb {
-  width: 10px;
-  height: 20px;
-  background: green;
-  border: 2px solid black;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-#probSlider::-ms-thumb {
-  width: 10px;
-  height: 20px;
-  background: green;
-  border: 2px solid black;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
 
 /* Pop-up box styling */
 .popup {
@@ -243,13 +72,17 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it appears above all other elements */
-  visibility: hidden; /* Initially hidden */
-  opacity: 0; /* Initially transparent */
+  z-index: 1000;
+  /* Ensure it appears above all other elements */
+  visibility: hidden;
+  /* Initially hidden */
+  opacity: 0;
+  /* Initially transparent */
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -259,23 +92,29 @@
   border: 0;
   max-width: 800px;
   text-align: center;
-  box-shadow: 0 5px 30px var(--color-11); /* Add a shadow for better visibility */
+  box-shadow: 0 5px 30px var(--color-11);
+  /* Add a shadow for better visibility */
 }
 
 
 .popup-close {
   position: absolute;
-  top: 5px; /* Position 10px from the top of the popup box */
-  right: 10px; /* Position 10px from the right of the popup box */
+  top: 5px;
+  /* Position 10px from the top of the popup box */
+  right: 10px;
+  /* Position 10px from the right of the popup box */
   font-size: 1.5rem;
   font-weight: bold;
-  color: white; /* Change to black for better visibility */
+  color: white;
+  /* Change to black for better visibility */
   cursor: pointer;
-  z-index: 1001; /* Ensure it appears above the popup content */
+  z-index: 1001;
+  /* Ensure it appears above the popup content */
 }
 
 .popup-close:hover {
-  color: red; /* Change color on hover */
+  color: red;
+  /* Change color on hover */
 }
 
 /* Show the pop-up */
