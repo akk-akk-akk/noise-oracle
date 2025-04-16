@@ -39,12 +39,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-
 /* Ensure the webcam canvas scales to fit its parent container */
 #webcam-container canvas {
 width: 100%; /* Make the canvas take up 100% of the parent's width */
-  height: auto; /* Maintain the aspect ratio */
+  height: auto; 
   display: block; /* Remove any extra spacing caused by inline elements */
 }
 
@@ -114,13 +112,21 @@ width: 100%; /* Make the canvas take up 100% of the parent's width */
 
 @media (max-width: 768px) {
   .row {
-    flex-direction: column; /* Stack the columns vertically */
-    gap: var(--spacing-m); /* Add spacing between stacked columns */
+    /* flex-direction: column; 
+    gap: var(--spacing-m); */
   }
 
-  .column {
+  .column__2 {
     width: 100%; /* Ensure columns take full width */
     margin: 0 auto; /* Center the columns */
+  }
+
+
+  #webcam-container {
+    width: 100%; /* Ensure the webcam container takes full width */
+    max-width: 100%; /* Override any inherited max-width */
+    margin: 0 auto; /* Center the container */
+    box-sizing: border-box; /* Include padding and borders in the width */
   }
 
   #webcam-container canvas {

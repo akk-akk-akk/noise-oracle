@@ -288,7 +288,14 @@ footer {
   display: flex;
   flex-direction: column;
   flex: 1;
-  border: 2px solid var(--color-11);
+  border: 2px solid var(--color-0);
+}
+
+.column__2 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 2px solid var(--color-0);
 }
 
 
