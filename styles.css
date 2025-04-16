@@ -260,27 +260,28 @@
 }
 
 .popup-content {
+  position: relative;
   background-color: white;
-  padding: 50px;
-  border-radius: 10px;
+  border: 0;
   max-width: 800px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow for better visibility */
+  box-shadow: 0 5px 30px var(--color-11); /* Add a shadow for better visibility */
 }
 
 
 .popup-close {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 5px; /* Position 10px from the top of the popup box */
+  right: 10px; /* Position 10px from the right of the popup box */
   font-size: 1.5rem;
   font-weight: bold;
-  color: black;
+  color: white; /* Change to black for better visibility */
   cursor: pointer;
+  z-index: 1001; /* Ensure it appears above the popup content */
 }
 
 .popup-close:hover {
-  color: red;
+  color: red; /* Change color on hover */
 }
 
 /* Show the pop-up */
