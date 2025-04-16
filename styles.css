@@ -33,12 +33,6 @@
    padding: 0;
  }
 
- html,
- body {
-   font-family: "myfont", sans-serif;
-   background-color: white;
- }
-
  .label {
   font-family: 'Roboto Mono', monospace; /* Use monospaced font */
   font-weight: 400;
@@ -57,7 +51,7 @@
   content: attr(data-tooltip); /* Use the data-tooltip attribute for the text */
   position: absolute;
   bottom: 100%; /* Position above the label */
-  left: 50%;
+  left: 90%;
   /* transform: translateX(-50%); */
   background-color: white; /* White background */
   color: black; /* Black text */

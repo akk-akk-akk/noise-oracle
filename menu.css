@@ -37,7 +37,7 @@ header {
 }
 
 .main__nav-bar ul li a {
-  color: var(--color-nav-link);
+  color: var(--color-1);
   transition: color 0.3s;
   font-weight: inherit;
 }
