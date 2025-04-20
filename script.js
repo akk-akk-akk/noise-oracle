@@ -3,60 +3,45 @@ const URL = "https://teachablemachine.withgoogle.com/models/hxSWFPvbQ/";
 
 let model, webcam, labelContainer, maxPredictions;
 
-// Handle click to start camera and model
-document.getElementById("startButton").addEventListener("click", () => {
-  init();
-});
-
+// Load the image model and setup the webcam
 async function init() {
   const modelURL = URL + "model.json";
   const metadataURL = URL + "metadata.json";
 
-  try {
-    // Load the model and metadata
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
+  // Load the model and metadata
+  model = await tmImage.load(modelURL, metadataURL);
+  maxPredictions = model.getTotalClasses();
 
-    // Setup the webcam
-    const flip = true; // Flip horizontally for front camera
-    webcam = new tmImage.Webcam(300, 200, flip);
+  // Setup the webcam
+  const flip = true; // Flip the webcam horizontally
+  webcam = new tmImage.Webcam(300, 200, flip); // width, height, flip
+  await webcam.setup(); // Request access to the webcam
+  await webcam.play();
+  window.requestAnimationFrame(loop);
 
-    // Try to access the camera with basic constraints
-    await webcam.setup({ facingMode: "user" }); // <-- Important for iOS
-    await webcam.play();
+  // Append the webcam canvas to the DOM
+  document.getElementById("webcam-container").appendChild(webcam.canvas);
 
-    // Hide the start button once camera starts
-    document.getElementById("startButton").style.display = "none";
-
-    // Add webcam canvas to page
-    document.getElementById("webcam-container").appendChild(webcam.canvas);
-
-    // Prepare label container
-    labelContainer = document.getElementById("label-container");
-    for (let i = 0; i < maxPredictions; i++) {
-      labelContainer.appendChild(document.createElement("div"));
-    }
-
-    // Start looping prediction
-    window.requestAnimationFrame(loop);
-  } catch (err) {
-    console.error("Error accessing the camera:", err);
-    alert("Unable to access the camera. Please check permissions and ensure you're using HTTPS.");
+  // Prepare the label container
+  labelContainer = document.getElementById("label-container");
+  for (let i = 0; i < maxPredictions; i++) {
+    labelContainer.appendChild(document.createElement("div"));
   }
 }
 
-// Loop through webcam frames and predict
+// Continuously update the webcam and make predictions
 async function loop() {
-  webcam.update();
+  webcam.update(); // Update the webcam frame
   await predict();
   window.requestAnimationFrame(loop);
 }
 
-// Run prediction and update labels
+// Run the webcam image through the image model
 async function predict() {
   const prediction = await model.predict(webcam.canvas);
   let highestPrediction = { className: "Loading...", probability: 0 };
 
+  // Update the label container and find the highest prediction
   for (let i = 0; i < maxPredictions; i++) {
     const classPrediction =
       prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -67,6 +52,30 @@ async function predict() {
     }
   }
 
-  // Show highest prediction
+  // Update the overlay text with the highest prediction
   document.getElementById("overlayText").innerText = highestPrediction.className;
 }
+
+// // Show the popup when the page loads
+// window.onload = function () {
+//   const popup = document.getElementById("popup");
+//   const popupClose = document.getElementById("popupClose");
+
+//   // Display the popup
+//   popup.style.display = "block";
+
+//   // Close the popup when the close button is clicked
+//   popupClose.onclick = function () {
+//     popup.style.display = "none";
+//   };
+
+//   // Close the popup when clicking outside the popup content
+//   window.onclick = function (event) {
+//     if (event.target === popup) {
+//       popup.style.display = "none";
+//     }
+//   };
+// };
+
+// Start the application
+init();

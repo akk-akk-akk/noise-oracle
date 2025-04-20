@@ -285,6 +285,7 @@ footer {
 
 .column,
 .row > ul > li {
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;

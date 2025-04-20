@@ -43,7 +43,6 @@
   width: calc(100% - var(--spacing-l)); /* Reduce the width by var(--spacing-l) */
   margin-left: var(--spacing-m);
   margin-bottom: var(--spacing-m);
-
   height: auto; 
   display: block; /* Remove any extra spacing caused by inline elements */
   /* border-radius: 8px; */
