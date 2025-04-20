@@ -3,6 +3,11 @@ const URL = "https://teachablemachine.withgoogle.com/models/hxSWFPvbQ/";
 
 let model, webcam, labelContainer, maxPredictions;
 
+document.getElementById("startButton").addEventListener("click", () => {
+  init();
+});
+
+
 // Load the image model and setup the webcam
 async function init() {
   const modelURL = URL + "model.json";
@@ -15,7 +20,7 @@ async function init() {
   // Setup the webcam
   const flip = true; // Flip the webcam horizontally
   webcam = new tmImage.Webcam(300, 200, flip); // width, height, flip
-  await webcam.setup(); // Request access to the webcam
+
   await webcam.setup({ facingMode: "user" });
   await webcam.play();
   window.requestAnimationFrame(loop);
