@@ -41,8 +41,8 @@
 /* Ensure the webcam canvas scales to fit its parent container */
 #webcam-container canvas {
   width: calc(100% - var(--spacing-l)); /* Reduce the width by var(--spacing-l) */
-  margin-left: var(--spacing-l);
-  margin-bottom: var(--spacing-l);
+  margin-left: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
 
   height: auto; 
   display: block; /* Remove any extra spacing caused by inline elements */

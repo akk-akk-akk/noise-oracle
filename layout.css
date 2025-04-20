@@ -318,9 +318,9 @@ footer {
 }
 
 .type__content {
-  margin-left: var(--spacing-l);
-  margin-right: var(--spacing-l);
-  margin-bottom: var(--spacing-l);
+  margin-left: var(--spacing-m);
+  margin-right: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
 }
 
 .center__type {
@@ -493,6 +493,10 @@ p:not(:last-child) {
     font-size: var(--font-size-s);
   }
 
+  .p__size-s {
+    font-size: var(--font-size-m);
+  }
+
 
   h2 {
     text-decoration: underline;
@@ -530,7 +534,6 @@ flex-direction: column;
   background: rgba(0, 0, 0, 0.5);
 
   display: flex;
-  align-items: center;
   align-items: center;
 
   visibility: hidden;
