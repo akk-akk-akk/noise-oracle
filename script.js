@@ -38,6 +38,10 @@ async function init() {
 
   try {
     await webcam.setup({ facingMode: facingMode });
+    webcam.webcam.setAttribute("playsinline", true);
+webcam.webcam.setAttribute("autoplay", true);
+
+
     await webcam.play();
 
     // Hide start button, show flip button
