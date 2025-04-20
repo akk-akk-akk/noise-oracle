@@ -16,6 +16,7 @@ async function init() {
   const flip = true; // Flip the webcam horizontally
   webcam = new tmImage.Webcam(300, 200, flip); // width, height, flip
   await webcam.setup(); // Request access to the webcam
+  await webcam.setup({ facingMode: "user" });
   await webcam.play();
   window.requestAnimationFrame(loop);
 
