@@ -138,6 +138,7 @@
     width: 100%; /* Ensure the webcam scales to fit the parent container */
     height: auto; /* Maintain aspect ratio */
     margin: 0 auto;
+    border-bottom: 0;
   }
 
   #overlayText {
