@@ -35,11 +35,13 @@
 
 /* Style for the live camera feed */
 #webcam-container {
+   
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 /* Ensure the webcam canvas scales to fit its parent container */
 #webcam-container canvas {
+  position: relative;
   width: calc(100% - var(--spacing-l)); /* Reduce the width by var(--spacing-l) */
   margin-left: var(--spacing-m);
   margin-bottom: var(--spacing-m);
@@ -50,7 +52,6 @@
 }
 
 #startButton {
-
   max-width: 300px;
   margin-bottom: 40px;
   padding: 20px;
@@ -65,6 +66,8 @@
   position: absolute; /* Position it relative to the webcam container */
   bottom: 10px; /* Adjust the distance from the bottom */
   left: 10px; /* Adjust the distance from the left */
+  top: unset;
+  right: unset;
   background: none; /* Remove default button background */
   border: none; /* Remove default button border */
   padding: 0; /* Remove padding */
@@ -76,7 +79,6 @@
   width: 40px; /* Set the size of the flip icon */
   height: 40px; /* Maintain aspect ratio */
   border-radius: 50%; /* Optional: make the icon circular */
-  background-color: rgba(255, 255, 255, 0.8); /* Optional: add a semi-transparent background */
   padding: 5px; /* Optional: add padding inside the circle */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: add a shadow for better visibility */
 }
