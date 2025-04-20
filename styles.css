@@ -49,6 +49,18 @@
   border: 2px solid black;
 }
 
+#startButton {
+
+  max-width: 300px;
+  margin-bottom: 40px;
+  padding: 20px;
+  align-self: center;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  color: black;
+}
+
 
 
 /* Style for the GIF overlay text */

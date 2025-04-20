@@ -2,43 +2,64 @@
 const URL = "https://teachablemachine.withgoogle.com/models/hxSWFPvbQ/";
 
 let model, webcam, labelContainer, maxPredictions;
+let facingMode = "user"; // "user" = front camera, "environment" = back camera
 
 document.getElementById("startButton").addEventListener("click", () => {
   init();
 });
 
+document.getElementById("flipButton").addEventListener("click", async () => {
+  // Flip the camera mode
+  facingMode = facingMode === "user" ? "environment" : "user";
+  await stopWebcam(); // Stop current webcam
+  await init();       // Reinitialize
+});
 
 // Load the image model and setup the webcam
 async function init() {
   const modelURL = URL + "model.json";
   const metadataURL = URL + "metadata.json";
 
-  // Load the model and metadata
-  model = await tmImage.load(modelURL, metadataURL);
-  maxPredictions = model.getTotalClasses();
+  // Load the model if not already loaded
+  if (!model) {
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    // Prepare the label container
+    labelContainer = document.getElementById("label-container");
+    for (let i = 0; i < maxPredictions; i++) {
+      labelContainer.appendChild(document.createElement("div"));
+    }
+  }
 
   // Setup the webcam
-  const flip = true; // Flip the webcam horizontally
-  webcam = new tmImage.Webcam(300, 200, flip); // width, height, flip
+  const flip = true; // Flip horizontally for front camera
+  webcam = new tmImage.Webcam(300, 200, flip);
 
-  await webcam.setup({ facingMode: "user" });
-  await webcam.play();
+  try {
+    await webcam.setup({ facingMode: facingMode });
+    await webcam.play();
 
-      // Hide the start button once camera starts
-      document.getElementById("startButton").style.display = "none";
+    // Hide start button, show flip button
+    document.getElementById("startButton").style.display = "none";
+    document.getElementById("flipButton").style.display = "inline-block";
 
-      // Add webcam canvas to page
-      document.getElementById("webcam-container").appendChild(webcam.canvas);
-      
-  window.requestAnimationFrame(loop);
+    // Add webcam canvas to page
+    const container = document.getElementById("webcam-container");
+    container.innerHTML = ""; // Clear previous canvas if any
+    container.appendChild(webcam.canvas);
 
-  // Append the webcam canvas to the DOM
-  document.getElementById("webcam-container").appendChild(webcam.canvas);
+    window.requestAnimationFrame(loop);
+  } catch (err) {
+    console.error("Error accessing the camera:", err);
+    alert("Could not access the camera. Please check permissions.");
+  }
+}
 
-  // Prepare the label container
-  labelContainer = document.getElementById("label-container");
-  for (let i = 0; i < maxPredictions; i++) {
-    labelContainer.appendChild(document.createElement("div"));
+// Stop webcam before switching cameras
+async function stopWebcam() {
+  if (webcam && webcam.stream) {
+    webcam.stop();
   }
 }
 
@@ -68,27 +89,3 @@ async function predict() {
   // Update the overlay text with the highest prediction
   document.getElementById("overlayText").innerText = highestPrediction.className;
 }
-
-// // Show the popup when the page loads
-// window.onload = function () {
-//   const popup = document.getElementById("popup");
-//   const popupClose = document.getElementById("popupClose");
-
-//   // Display the popup
-//   popup.style.display = "block";
-
-//   // Close the popup when the close button is clicked
-//   popupClose.onclick = function () {
-//     popup.style.display = "none";
-//   };
-
-//   // Close the popup when clicking outside the popup content
-//   window.onclick = function (event) {
-//     if (event.target === popup) {
-//       popup.style.display = "none";
-//     }
-//   };
-// };
-
-// Start the application
-init();
