@@ -3,25 +3,16 @@ const URL = "https://teachablemachine.withgoogle.com/models/hxSWFPvbQ/";
 
 let model, webcam, labelContainer, maxPredictions;
 let facingMode = "user"; // "user" = front camera, "environment" = back camera
-let isFrontCamera = true;
 
 document.getElementById("startButton").addEventListener("click", () => {
   init();
 });
 
 document.getElementById("flipButton").addEventListener("click", async () => {
-  // Flip the camera
-  isFrontCamera = !isFrontCamera;
-
-  // Stop the current webcam stream
-  await webcam.stop();
-
-  // Reinitialize the webcam with the new facing mode
-  await webcam.setup({ facingMode: isFrontCamera ? "user" : "environment" });
-  await webcam.play();
-
-  // Update the webcam canvas
-  document.getElementById("webcam-container").appendChild(webcam.canvas);
+  // Flip the camera mode
+  facingMode = facingMode === "user" ? "environment" : "user";
+  await stopWebcam(); // Stop current webcam
+  await init();       // Reinitialize
 });
 
 // Load the image model and setup the webcam
@@ -43,23 +34,26 @@ async function init() {
 
   // Setup the webcam
   const flip = true; // Flip horizontally for front camera
-  webcam = new tmImage.Webcam(null, null, flip); // Remove hardcoded width and height
-  await webcam.setup({ facingMode: "user" }); // Start with the front camera
-  await webcam.play();
+  webcam = new tmImage.Webcam(300, 230, flip);
 
-  // Hide start button, show flip button
-  document.getElementById("startButton").style.display = "none";
-  document.getElementById("flipButton").style.display = "block";
+  try {
+    await webcam.setup({ facingMode: facingMode });
+    await webcam.play();
 
-  // Add webcam canvas to page
-  const webcamContainer = document.getElementById("webcam-container");
-  webcamContainer.innerHTML = ""; // Clear previous canvas if any
-  webcamContainer.appendChild(webcam.canvas);
+    // Hide start button, show flip button
+    document.getElementById("startButton").style.display = "none";
+    document.getElementById("flipButton").style.display = "inline-block";
 
-  // Append the flip button to the webcam container
-  webcamContainer.appendChild(document.getElementById("flipButton"));
+    // Add webcam canvas to page
+    const container = document.getElementById("webcam-container");
+    container.innerHTML = ""; // Clear previous canvas if any
+    container.appendChild(webcam.canvas);
 
-  window.requestAnimationFrame(loop);
+    window.requestAnimationFrame(loop);
+  } catch (err) {
+    console.error("Error accessing the camera:", err);
+    alert("Could not access the camera. Please check permissions.");
+  }
 }
 
 // Stop webcam before switching cameras
