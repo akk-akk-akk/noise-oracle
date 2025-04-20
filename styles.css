@@ -35,15 +35,19 @@
 
 /* Style for the live camera feed */
 #webcam-container {
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 /* Ensure the webcam canvas scales to fit its parent container */
 #webcam-container canvas {
-width: 100%; /* Make the canvas take up 100% of the parent's width */
+  width: calc(100% - var(--spacing-l)); /* Reduce the width by var(--spacing-l) */
+  margin-left: var(--spacing-l);
+  margin-bottom: var(--spacing-l);
+
   height: auto; 
   display: block; /* Remove any extra spacing caused by inline elements */
+  /* border-radius: 8px; */
+  border: 2px solid black;
 }
 
 
@@ -68,6 +72,7 @@ width: 100%; /* Make the canvas take up 100% of the parent's width */
 #gifBackground {
   width: 100%; 
   height: auto;
+  
 }
 
 /* Ensure the popup covers the entire screen */
@@ -125,13 +130,14 @@ width: 100%; /* Make the canvas take up 100% of the parent's width */
   #webcam-container {
     width: 100%; /* Ensure the webcam container takes full width */
     max-width: 100%; /* Override any inherited max-width */
-    margin: 0 auto; /* Center the container */
+    /* margin: 0 auto; Center the container */
     box-sizing: border-box; /* Include padding and borders in the width */
   }
 
   #webcam-container canvas {
     width: 100%; /* Ensure the webcam scales to fit the parent container */
     height: auto; /* Maintain aspect ratio */
+    margin: 0 auto;
   }
 
   #overlayText {

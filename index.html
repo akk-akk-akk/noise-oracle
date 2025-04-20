@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noise Oracles</title>
+  <title>Noise Oracle</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -29,34 +29,31 @@
     </div>
   </div>
 
-  <section class="row width__xl margin__auto margin__top-l">
+  <section style="gap:0;" class="row width__xl margin__auto margin__top-l">
     <!-- Left Column -->
-    <div style="border:0;" class="column margin__m">
-      <div class="row">
+    <div style="border:0;" class="column">
+      <div class="row type__content padding__top-m">
         <h1>Oracle 2:<br>
           Noise Oracle</h1>
-      </div>
-      <div style="border:0; max-width:300px;" class="row">
-        <div class="p2 r margin__top-s margin__bottom-l">
+        <p class="p2">
           Step 1:
           Think of a question that you would like answered.<br><br>
 
           Step 2:
-          Find an object or image that might give you the answer(maybe its a picture of grandma, a tree, or an object.)<br><br>
+          Bring an object or image that might give you the answer (maybe its a picture of your late grandma, a tree, or
+          an object.)<br><br>
 
           Step 3:
           Hold the object or image up to the camera and let the oracle find you guidance from the noise.
+        </p>
+      </div>
 
-        </div>
-        
-      </div>
-      <div class="column__2">
-        <div id="webcam-container"></div>
-      </div>
+      <div id="webcam-container"></div>
     </div>
 
+
     <!-- Right Column -->
-    <div class="column margin__m">
+    <div class="column__noise">
       <div class="row" style="position: relative;">
         <img id="gifBackground" src="looping-gif.gif" alt="Looping GIF" />
         <div id="overlayText">

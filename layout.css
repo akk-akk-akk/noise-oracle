@@ -291,13 +291,6 @@ footer {
   border: 2px solid var(--color-0);
 }
 
-.column__2 {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  border: 2px solid var(--color-0);
-}
-
 
 .column h1 {
   gap: var(--spacing-m); /* Add this if you want to control the gap size in column layouts */
@@ -314,6 +307,14 @@ footer {
   flex-direction: column;
   flex-basis: 100%;
   flex: 2;
+}
+
+.column__noise {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 2px solid var(--color-0);
+  margin: var(--spacing-l);
 }
 
 .type__content {
@@ -496,6 +497,14 @@ p:not(:last-child) {
   h2 {
     text-decoration: underline;
   }
+
+  .row {
+flex-direction: column;
+  }
+
+.column__noise {
+  margin: 0 auto;
+}
 }
 
 
