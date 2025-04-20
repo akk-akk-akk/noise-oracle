@@ -8,12 +8,12 @@ document.getElementById("startButton").addEventListener("click", () => {
   init();
 });
 
-document.getElementById("flipButton").addEventListener("click", async () => {
-  // Flip the camera mode
-  facingMode = facingMode === "user" ? "environment" : "user";
-  await stopWebcam(); // Stop current webcam
-  await init();       // Reinitialize
-});
+// document.getElementById("flipButton").addEventListener("click", async () => {
+//   // Flip the camera mode
+//   facingMode = facingMode === "user" ? "environment" : "user";
+//   await stopWebcam(); // Stop current webcam
+//   await init();       // Reinitialize
+// });
 
 // Load the image model and setup the webcam
 async function init() {
