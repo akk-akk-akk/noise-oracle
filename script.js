@@ -23,6 +23,13 @@ async function init() {
 
   await webcam.setup({ facingMode: "user" });
   await webcam.play();
+
+      // Hide the start button once camera starts
+      document.getElementById("startButton").style.display = "none";
+
+      // Add webcam canvas to page
+      document.getElementById("webcam-container").appendChild(webcam.canvas);
+      
   window.requestAnimationFrame(loop);
 
   // Append the webcam canvas to the DOM
