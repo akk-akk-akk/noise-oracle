@@ -34,7 +34,7 @@ async function init() {
 
   // Setup the webcam
   const flip = true; // Flip horizontally for front camera
-  webcam = new tmImage.Webcam(300, 200, flip);
+  webcam = new tmImage.Webcam(300, 250, flip);
 
   try {
     await webcam.setup({ facingMode: facingMode });
