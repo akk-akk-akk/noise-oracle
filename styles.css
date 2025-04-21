@@ -32,16 +32,18 @@
   padding: 0;
 }
 
+.webcam-container-container {
+  position: relative;
+}
 
 /* Style for the live camera feed */
 #webcam-container {
-   
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 /* Ensure the webcam canvas scales to fit its parent container */
 #webcam-container canvas {
-  position: relative;
+
   width: calc(100% - var(--spacing-l)); /* Reduce the width by var(--spacing-l) */
   margin-left: var(--spacing-m);
   margin-bottom: var(--spacing-m);
@@ -73,6 +75,7 @@
   padding: 0; /* Remove padding */
   cursor: pointer; /* Change cursor to pointer */
   z-index: 10; /* Ensure it appears above the webcam canvas */
+ 
 }
 
 #flipButton img {
@@ -80,8 +83,9 @@
   height: 40px; /* Maintain aspect ratio */
   border-radius: 50%; /* Optional: make the icon circular */
   padding: 5px; /* Optional: add padding inside the circle */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: add a shadow for better visibility */
+  background-color: blue;
 }
+
 
 /* #flipButton {
   max-width: 300px;
