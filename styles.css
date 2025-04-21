@@ -5,6 +5,7 @@
 @import "default.css";
 @import "layout.css";
 @import "menu.css";
+@import "queries.css";
 
 /* **********************************************************
  * to import a font, use the @import option, you can find
@@ -55,6 +56,7 @@
 
 #startButton {
   max-width: 300px;
+  margin-top: 20px;
   margin-bottom: 40px;
   padding: 20px;
   align-self: center;

@@ -4,6 +4,31 @@ const URL = "https://teachablemachine.withgoogle.com/models/hxSWFPvbQ/";
 let model, webcam, labelContainer, maxPredictions;
 let facingMode = "user"; // or "environment"
 
+function scrollToTop() {
+  window.scroll({ top: 0, left: 0, behavior: "smooth" });
+}
+
+function initHamburgerMenu() {
+  /* initialise Hamburger-Menu */
+  const hamburger = document.querySelector(".main__nav-ham");
+  const navMenu = document.querySelector(".main__nav-list");
+  const title = document.querySelector(".main__nav-title");
+
+  hamburger.addEventListener("click", mobileMenu);
+
+  function mobileMenu() {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  }
+}
+
+initHamburgerMenu();
+
 document.getElementById("startButton").addEventListener("click", () => {
   init();
 });
