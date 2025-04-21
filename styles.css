@@ -68,8 +68,8 @@
 
 #flipButton {
   position: absolute; /* Position it relative to the webcam container */
-  bottom: 10px; /* Adjust the distance from the bottom */
-  left: 10px; /* Adjust the distance from the left */
+  bottom: 40px; /* Adjust the distance from the bottom */
+  left: 40px; /* Adjust the distance from the left */
   top: unset;
   right: unset;
   background: none; /* Remove default button background */
@@ -193,5 +193,14 @@
 
   #overlayText {
     font-size: 2rem;
+  }
+
+  .webcam-container-container {
+    margin:0;
+  }
+
+  #flipButton {
+    bottom: 10px; /* Adjust the distance from the bottom */
+  left: 10px; /* Adjust the distance from the left */
   }
 }
