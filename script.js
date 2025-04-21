@@ -2,18 +2,18 @@
 const URL = "https://teachablemachine.withgoogle.com/models/hxSWFPvbQ/";
 
 let model, webcam, labelContainer, maxPredictions;
-let facingMode = "user"; // "user" = front camera, "environment" = back camera
+let facingMode = "user"; // or "environment"
 
 document.getElementById("startButton").addEventListener("click", () => {
   init();
 });
 
-// document.getElementById("flipButton").addEventListener("click", async () => {
-//   // Flip the camera mode
-//   facingMode = facingMode === "user" ? "environment" : "user";
-//   await stopWebcam(); // Stop current webcam
-//   await init();       // Reinitialize
-// });
+document.getElementById("flipButton").addEventListener("click", async () => {
+  // Flip the camera mode
+  facingMode = facingMode === "user" ? "environment" : "user";
+  await stopWebcam();
+  await init();
+});
 
 // Load the image model and setup the webcam
 async function init() {
@@ -33,37 +33,40 @@ async function init() {
   }
 
   // Setup the webcam
-  const flip = true; // Flip horizontally for front camera
+  const flip = facingMode === "user"; // Flip only for front camera
   webcam = new tmImage.Webcam(300, 230, flip);
 
   try {
-    await webcam.setup({ facingMode: facingMode });
-    webcam.webcam.setAttribute("playsinline", true);
-webcam.webcam.setAttribute("autoplay", true);
+    await webcam.setup({ facingMode });
 
+    // iOS Safari-specific: required attributes
+    webcam.webcam.setAttribute("playsinline", true);
+    webcam.webcam.setAttribute("autoplay", true);
+    webcam.webcam.setAttribute("muted", true); // sometimes helps
+
+    // Attach canvas before playing
+    const container = document.getElementById("webcam-container");
+    container.innerHTML = "";
+    container.appendChild(webcam.canvas);
 
     await webcam.play();
 
-    // Hide start button, show flip button
     document.getElementById("startButton").style.display = "none";
     document.getElementById("flipButton").style.display = "inline-block";
-
-    // Add webcam canvas to page
-    const container = document.getElementById("webcam-container");
-    container.innerHTML = ""; // Clear previous canvas if any
-    container.appendChild(webcam.canvas);
 
     window.requestAnimationFrame(loop);
   } catch (err) {
     console.error("Error accessing the camera:", err);
-    alert("Could not access the camera. Please check permissions.");
+    alert("Could not access the camera. Please check camera permissions and try refreshing.");
   }
 }
 
 // Stop webcam before switching cameras
 async function stopWebcam() {
-  if (webcam && webcam.stream) {
-    webcam.stop();
+  if (webcam && webcam.webcam && webcam.webcam.srcObject) {
+    webcam.pause();
+    const tracks = webcam.webcam.srcObject.getTracks();
+    tracks.forEach(track => track.stop());
   }
 }
 
@@ -79,7 +82,6 @@ async function predict() {
   const prediction = await model.predict(webcam.canvas);
   let highestPrediction = { className: "Loading...", probability: 0 };
 
-  // Update the label container and find the highest prediction
   for (let i = 0; i < maxPredictions; i++) {
     const classPrediction =
       prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -90,6 +92,5 @@ async function predict() {
     }
   }
 
-  // Update the overlay text with the highest prediction
   document.getElementById("overlayText").innerText = highestPrediction.className;
 }
